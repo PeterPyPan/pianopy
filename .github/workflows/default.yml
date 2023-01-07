@@ -21,10 +21,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: ./
+          
+      - uses: snok/install-poetry@v1
         with:
           poetry-version: ${{ matrix.poetry-version }}
 
