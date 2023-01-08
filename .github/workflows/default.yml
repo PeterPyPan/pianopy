@@ -7,7 +7,7 @@ on:
 
 jobs:
   test-integration:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -15,8 +15,6 @@ jobs:
           - "3.8"
         poetry-version:
           - "1.3.1"
-        os:
-          - ubuntu-latest
       fail-fast: true
 
     steps:
@@ -30,10 +28,17 @@ jobs:
         with:
           poetry-version: ${{ matrix.poetry-version }}
 
-      - run: poetry --version
+      - name: Install libasound2 (for rtmidi)
+        run: sudo apt-get install libasound2-dev
 
-      - run: make install
+      - name: Print the poetry version to make sure it is installed
+        run: poetry --version
 
-      - run: make test
+      - name: Setup the dev environment
+        run: make install
 
-      - run: make build
+      - name: Run Unittests
+        run: make test
+
+      - name: Build the package
+        run: make build
