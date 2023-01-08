@@ -9,6 +9,9 @@ homepage = "https://github.com/PeterPyPan/pianopy"
 repository = "https://github.com/python-poetry/poetry"
 keywords = ["piano", "music", "game"]
 
+[tool.poetry.scripts]
+pianopy = 'pianopy.__main__:main'
+
 [tool.poetry.dependencies]
 python = "^3.8"
 pygame = "^2.1.2"
