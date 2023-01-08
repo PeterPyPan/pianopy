@@ -28,10 +28,10 @@ class Piano:
         # z-order mapped keys
         self._key_rects = {z: [] for z in Z_ORDER_VALS}
         # flat list of keys
-        self._flat_key_rects = []
-        for key_rect in _get_key_rects(n_octaves=n_octaves, start_pos=start_pos):
+        self._flat_key_rects = _get_key_rects(n_octaves=n_octaves, start_pos=start_pos)
+        # z-order mapped dict of list of keys
+        for key_rect in self._flat_key_rects:
             self._key_rects[key_rect.z_order].append(key_rect)
-            self._flat_key_rects.append(key_rect)
         # mark for drawing
         self._draw = True
 
