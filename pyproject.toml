@@ -1,9 +1,13 @@
 [tool.poetry]
 name = "pianopy"
 version = "0.0.1"
-description = ""
+description = "A python library/application to play, compose and interface with virtual and real pianos using MIDI."
+license = "MIT"
 authors = ["PeterPyPan <PeterPyPanGitHub@gmail.com>"]
 readme = "README.md"
+homepage = "https://github.com/PeterPyPan/pianopy"
+repository = "https://github.com/python-poetry/poetry"
+keywords = ["piano", "music", "game"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
