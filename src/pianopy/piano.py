@@ -16,6 +16,9 @@ WHITE_KEY_SIZE = np.array((16, 80))
 BLACK_KEY_SIZE = np.array((12, 40))
 KEY_SPACING = 1
 
+# vertical position of text
+TEXT_Y_POS = 120
+
 # white and black note names
 WHITE_NOTES = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
 BLACK_NOTES = ['C#', 'D#', None, 'F#', 'G#', 'A#', None]
@@ -40,17 +43,21 @@ class Piano:
         self._font_obj = pygame.font.SysFont(name='Arial', size=50)
         self._text_obj = None
 
+    def _get_text_rect(self, display):
+        x, y, w, h = self._text_obj.get_rect(center=display.get_rect().center)
+        return (x, TEXT_Y_POS, w, h)
+
     def display_text(self, text, bg_color, display=None):
 
         if self._text_obj is not None:
             # if old text obj exists, draw a bg color box on top of it
-            prev_rect = self._text_obj.get_rect(center=display.get_rect().center)
-            pygame.draw.rect(display, color=bg_color, rect=prev_rect)
+            pygame.draw.rect(
+                display, color=bg_color, rect=self._get_text_rect(display=display)
+            )
 
         if display is not None:
             self._text_obj = self._font_obj.render(text, True, colors.WHITE)
-            text_rect = self._text_obj.get_rect(center=display.get_rect().center)
-            display.blit(self._text_obj, text_rect)
+            display.blit(self._text_obj, self._get_text_rect(display=display))
 
     def draw(self, display, bg_color):
         # draw bg colored rectangle over old text
