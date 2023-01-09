@@ -1,4 +1,8 @@
+import pygame
+
 from pianopy.piano import Piano
+
+pygame.init()
 
 
 def test_piano():
