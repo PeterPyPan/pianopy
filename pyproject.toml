@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pianopy"
-version = "0.0.1"
+version = "0.0.2"
 description = "A python library/application to play, compose and interface with virtual and real pianos using MIDI."
 license = "MIT"
 authors = ["PeterPyPan <PeterPyPanGitHub@gmail.com>"]
