@@ -7,6 +7,7 @@ from pianopy.piano import Piano
 N_OCTAVES = 10
 SCREEN_SIZE = (1300, 200)
 FPS = 30
+BG_COLOR = colors.BLACK
 
 
 def midi_data_callback(message, piano: Piano):
@@ -25,7 +26,7 @@ def main():
 
     # create a pygame display
     display = pygame.display.set_mode(SCREEN_SIZE)
-    display.fill(colors.BLACK)
+    display.fill(BG_COLOR)
 
     # create a clock for fps control
     fps_clock = pygame.time.Clock()
@@ -44,11 +45,19 @@ def main():
                 close_midi_connection(midi_conn=midi_in)
                 pygame.quit()
                 quit()
-            elif event.type == pygame.MOUSEMOTION:
-                piano.handle_collisions(mouse_pos=event.pos)
+
+            if event.type in (
+                pygame.MOUSEMOTION,
+                pygame.MOUSEBUTTONUP,
+                pygame.MOUSEBUTTONDOWN,
+            ):
+                piano.handle_collisions(
+                    mouse_pos=event.pos, mouse_pressed=pygame.mouse.get_pressed()[0]
+                )
 
         # redraw the piano
-        piano.draw(display=display)
+        piano.draw(display=display, bg_color=BG_COLOR)
+
         pygame.display.update()
 
         # handle fps
