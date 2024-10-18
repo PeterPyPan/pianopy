@@ -2,6 +2,15 @@
 A python library/application to play, compose and interface with virtual and 
 real pianos using MIDI.
 
+## Run the pianopy application
+1. Install the pianopy library:  
+`pip install pianopy`
+2. Run the executable (in an activated virtual environment):
+`pianopy`
+3. If you have a digital piano connected to your computer through a midi 
+USB connection, the application will show the keys pressed on the piano in blue.
+
+
 ## Run tests, build, publish
 1. Run the unittests:  
 `make test`
